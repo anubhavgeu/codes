@@ -8,6 +8,47 @@
 </head>
 <body>
     <!-- start writing code -->
+    <h2>Taskify Frontend</h2>
+    <div id="container">
+        <div id="signup-container">
+            <h2>Signup</h2>
+            <form id="signup-form">
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username">
+                <label for="signup-password">Username:</label>
+                <input type="text" id="signup-password">
+                <button type="submit">Signup</button>
+            </form>
+            <p>
+                Already have account? <a href="#" id="show-signin">Sign In</a>
+            </p>
+        </div>
+        <div id="signin-container" style="display: none;">
+            <h2>Signin</h2>
+            <form id="signin-form" >
+                <label for="signin-username">Username:</label>
+                <input type="text" id="signin-username">
+                <label for="signin-password">Username:</label>
+                <input type="text" id="signin-password">
+                <button type="submit">Signin</button>
+            </form>
+            <p>
+                Don't have an account? <a href="#" id="show-signup">Sign Up</a>
+            </p>
+        </div>
+        <div id="todo-container" style="display: none;">
+            <h2>Your Todo List</h2>
+            <form id="todo-form">
+                <input type="text" id="todo-input" placeholder="Add a new todo" required>
+                <button type="submit">Add Todo</button>
+            </form>
+            <ul id="todo-list">Showing todos</ul>
+            <button id="logout-button">Logout</button>
+        
+        </div>
+        
+        <p id="response-message"></p>
+    </div>
     <script src="./script.js"></script>    
 </body>
 </html>
