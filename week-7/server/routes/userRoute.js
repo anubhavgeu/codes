@@ -45,18 +45,6 @@ userRouter.post('/signin', async(req, res) => {
     }
 });
 
-userRouter.get('/courses', async(req, res) => {
-    try {
-        const courses = await Course.find({});
-        return res.status(202).json({
-            courses
-        });
-    } catch (error) {
-        return res.status(505).json({
-            message :"Server error"
-        })
-    }
-});
 
 userRouter.use(userAuthMiddleware);
 

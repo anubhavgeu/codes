@@ -49,12 +49,7 @@ adminRouter.post('/signin', async(req, res) => {
     }
 });
 
-adminRouter.get('/courses', async(req, res) => {
-    const courses = await Course.find({});
-    return res.status(202).json({
-        courses
-    })
-});
+
 
 adminRouter.use(adminAuthMiddleware);
 
