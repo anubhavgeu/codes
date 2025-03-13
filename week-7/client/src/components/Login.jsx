@@ -8,7 +8,9 @@ const Login = () => {
         const resposne = await axios.post(); // // if you don't know about axios, give it a read https://axios-http.com/docs/intro
     }
     return (
-        <div>Login</div>
+        <div>
+            
+        </div>
     )
 }
 
