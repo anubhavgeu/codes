@@ -2,26 +2,43 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 const ShowCourses = () => {
-    const [courses, setCourses] = useState([]);
-    function fetchCouses() {
-        axios.get('http://localhost:3000/courses')
-            .then((response) => {
-                setCourses(response.data)
-                console.log(courses)
-            })
-    };
-    useEffect(() => {
-        fetchCouses();
-    },[]);
+  const [avail, setAvail] = useState([]);
+  function fetchCourses() {
+    axios.get('http://localhost:3000/courses')
+      .then((response) => {
+        console.log("API Response:", response.data.courses); 
+        setAvail(response.data.courses );
+        console.log(avail)
+      })
+      .catch((error) => console.error("Error fetching courses:", error));
+  };
+  useEffect(() => {
+    let timer = setInterval(fetchCourses,5000);
+    return () => {
+      clearInterval(timer);
+    }
+  },[]);
+  const courseItems = avail.map((course) => {
+    return (
+      <div key={course._id}>
+        <h3>{course.title}</h3>
+        <p>{course.description}</p>
+        <p>{course.price}</p>
+        <img style={{height: '100px', width: '200px'}} src={course.imageLink} alt="Image pic" />
+        <br />
+        <button >Purchase course</button>
+      </div>
+    );
+  });
+
   return (
-    <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
-        
+
+    <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
+      {courseItems}
     </div>
   )
 }
 
-function Display({description,price, imageLink, published, title}) {
 
-}
 
 export default ShowCourses
