@@ -7,14 +7,14 @@ const { userAuthMiddleware } = require('../middlewares/authMiddleware');
 userRouter.post('/signup', async(req, res) => {
     const {username,password} = req.body;
     try {   
-        const response = await User.findOne({username,password});
+        const response = await User.findOne({username});
         if (response) {
-            return res.status(404).json({
+            return res.status(400).json({
                 message: "User already exists"
             });
         }
         await User.create({username, password});
-        return res.status(202).json({
+        return res.status(201).json({
             message :"User successfully created"
         });
     } catch (error) {

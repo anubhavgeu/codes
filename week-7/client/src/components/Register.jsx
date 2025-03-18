@@ -16,10 +16,16 @@ const Register = () => {
                 username: username,
                 password: password
             });
-            console.log(response);
-            
+            console.log(response.data.message);
+            setError("");
+            navigate('/')
         } catch (error) {
-            setError(error.message);
+            if (error.response) {
+                console.log(error.response.data.message);
+                setError(error.response.data.message);
+            } else {
+                setError("Something went wrong");
+            }
         }
     }
     return (
@@ -32,6 +38,7 @@ const Register = () => {
                 <input type="password" id='password' onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password'/>
                 <br />
                 <button onClick={handleSignup}>Signup</button>
+                <h1>{error}</h1>
             </form>
         </div>
     )

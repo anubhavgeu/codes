@@ -1,11 +1,9 @@
-// login code here
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 
-const Login = () => {
-    // call the functions onClick of button.
-    const navigate = useNavigate();
+const AdminLogin = () => {
+  const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -13,14 +11,14 @@ const Login = () => {
         e.preventDefault();
         // console.log(username + " " + password)
         try {
-            const response = await axios.post('http://localhost:3000/users/signin', {
+            const response = await axios.post('http://localhost:3000/admin/signin', {
                 username: username,
                 password: password
             }); 
             console.log(response)
             console.log(response.data.token);
             const token = "Bearer " + response.data.token;
-            localStorage.setItem("userToken", token);
+            localStorage.setItem("adminToken", token);
             setError("");
             navigate('/')
         } catch (error) {
@@ -49,4 +47,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default AdminLogin

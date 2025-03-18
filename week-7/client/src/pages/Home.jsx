@@ -7,6 +7,8 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import ShowCourses from '../components/ShowCourses'
 import Header from '../components/Header';
+import AdminSignup from '../components/AdminSignup';
+import AdminLogin from '../components/AdminLogin';
 
 function Home ()  {
   return (
@@ -16,6 +18,8 @@ function Home ()  {
         <Route path="/" element={<ShowCourses/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Register/>}/>
+        <Route path='/admin-signup' element={<AdminSignup/>} />
+        <Route path='/admin-signin' element={<AdminLogin/>} />
       </Routes>
     </BrowserRouter>
   )

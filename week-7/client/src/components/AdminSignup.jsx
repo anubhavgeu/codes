@@ -1,26 +1,20 @@
-// login code here
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 
-const Login = () => {
-    // call the functions onClick of button.
-    const navigate = useNavigate();
+const AdminSignup = () => {
+  const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    async function handleLogin(e) {
+    async function handleSignup(e) {
         e.preventDefault();
-        // console.log(username + " " + password)
         try {
-            const response = await axios.post('http://localhost:3000/users/signin', {
+            const response = await axios.post('http://localhost:3000/admin/signup' ,{
                 username: username,
                 password: password
-            }); 
-            console.log(response)
-            console.log(response.data.token);
-            const token = "Bearer " + response.data.token;
-            localStorage.setItem("userToken", token);
+            });
+            console.log(response.data.message);
             setError("");
             navigate('/')
         } catch (error) {
@@ -30,7 +24,6 @@ const Login = () => {
             } else {
                 setError("Something went wrong");
             }
-            console.error("Login failed:", error.response ? error.response.data : error.message);
         }
     }
     return (
@@ -42,11 +35,11 @@ const Login = () => {
                 <label htmlFor="password">Enter your Password:</label>
                 <input type="password" id='password' onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Password'/>
                 <br />
-                <button onClick={handleLogin}>Login</button>
+                <button onClick={handleSignup}>Signup</button>
                 <h1>{error}</h1>
             </form>
         </div>
     )
 }
 
-export default Login
+export default AdminSignup;
